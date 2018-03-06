@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sf.dao.TagDao">
+    <select id="findTagByTagId" resultType="Tag" parameterType="int">
+        SELECT
+        tag_id tagId,
+        tag_name tagName,
+        tag_type tagType,
+        tag_num tagNum
+        FROM t_tag
+        WHERE tag_id = #{tagId}
+    </select>
+
+    <select id="findTagsByTagType" resultType="Tag" parameterType="string">
+        SELECT
+        tag_id tagId,
+        tag_name tagName,
+        tag_type tagType,
+        tag_num tagNum
+        FROM t_tag
+        WHERE tag_type = #{tagType}
+        ORDER BY tag_num DESC
+    </select>
+
+    <select id="findTagByTagName" resultType="Tag" parameterType="string">
+        SELECT
+        tag_id tagId,
+        tag_name tagName,
+        tag_type tagType,
+        tag_num tagNum
+        FROM t_tag
+        WHERE tag_name LIKE concat("%",#{tagName},"%")
+        ORDER BY tag_num DESC
+        LIMIT 1
+    </select>
+
+    <select id="findHotTagsByTagType" resultType="Tag" parameterType="string">
+        SELECT
+        tag_id tagId,
+        tag_name tagName,
+        tag_type tagType,
+        tag_num tagNum
+        FROM t_tag
+        WHERE tag_type = #{tagType}
+        ORDER BY tag_num DESC
+        LIMIT 8
+    </select>
+</mapper>

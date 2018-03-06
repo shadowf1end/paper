@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sf.dao.BookDao">
+    <select id="findBookByBookId" resultType="Book">
+        SELECT
+        book_id bookId,
+        authors,
+        tags,
+        translators,
+        origin_title originTitle,
+        image,
+        pubdate,
+        catalog,
+        pages,
+        publisher,
+        title,
+        author_intro authorIntro,
+        summary,
+        price
+        FROM t_book
+        WHERE book_id = #{bookId}
+    </select>
+    <select id="findBooksByTagName" resultType="Book">
+        SELECT
+        book_id bookId,
+        authors,
+        tags,
+        translators,
+        origin_title originTitle,
+        image,
+        pubdate,
+        catalog,
+        pages,
+        publisher,
+        title,
+        author_intro authorIntro,
+        summary,
+        price
+        FROM t_book
+        WHERE tags LIKE concat("%",#{arg0},"%")
+        LIMIT 20 OFFSET #{arg1}
+    </select>
+
+    <select id="getBookNumByTagName" resultType="int" parameterType="string">
+        SELECT count(title)
+        FROM t_book
+        WHERE tags LIKE concat("%",#{arg0},"%")
+    </select>
+
+    <select id="findBooks" resultType="Book">
+        SELECT
+        book_id bookId,
+        authors,
+        tags,
+        translators,
+        origin_title originTitle,
+        image,
+        pubdate,
+        catalog,
+        pages,
+        publisher,
+        title,
+        author_intro authorIntro,
+        summary,
+        price
+        FROM t_book
+        WHERE title LIKE concat("%",#{arg0},"%")
+        OR origin_title LIKE concat("%",#{arg0},"%")
+        OR authors LIKE concat("%",#{arg0},"%")
+        OR translators LIKE concat("%",#{arg0},"%")
+        LIMIT 20 OFFSET #{arg1}
+    </select>
+
+    <select id="getBookNum" resultType="int" parameterType="string">
+        SELECT count(title)
+        FROM t_book
+        WHERE title LIKE concat("%",#{factor},"%")
+        OR origin_title LIKE concat("%",#{factor},"%")
+        OR authors LIKE concat("%",#{factor},"%")
+        OR translators LIKE concat("%",#{factor},"%")
+    </select>
+
+    <select id="findLatestBooks" resultType="Book">
+        SELECT
+        book_id bookId,
+        authors,
+        tags,
+        translators,
+        origin_title originTitle,
+        image,
+        pubdate,
+        catalog,
+        pages,
+        publisher,
+        title,
+        author_intro authorIntro,
+        summary,
+        price
+        FROM t_book
+        ORDER BY pubdate DESC
+        LIMIT 8
+    </select>
+
+    <select id="findHotBooks" resultType="Book">
+        SELECT
+        book_id bookId,
+        authors,
+        tags,
+        translators,
+        origin_title originTitle,
+        image,
+        pubdate,
+        catalog,
+        pages,
+        publisher,
+        title,
+        author_intro authorIntro,
+        summary,
+        price
+        FROM t_book
+        ORDER BY pubdate DESC
+        LIMIT 8
+    </select>
+
+    <select id="findConcernedBooks" resultType="Book">
+        SELECT
+        book_id bookId,
+        authors,
+        tags,
+        translators,
+        origin_title originTitle,
+        image,
+        pubdate,
+        catalog,
+        pages,
+        publisher,
+        title,
+        author_intro authorIntro,
+        summary,
+        price
+        FROM t_book
+        WHERE book_id IN
+        (SELECT book_id FROM
+        (SELECT book_id
+        FROM t_collection
+        GROUP BY book_id
+        ORDER BY count(book_id) DESC
+        LIMIT 4) AS t)
+    </select>
+</mapper>

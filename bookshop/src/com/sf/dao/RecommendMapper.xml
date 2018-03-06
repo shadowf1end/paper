@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sf.dao.RecommendDao">
+    <select id="findRecommendBooks" parameterType="int" resultType="Recommend">
+        SELECT
+        book_id bookId,
+        rating
+        FROM t_recommend
+        WHERE book_id NOT IN
+        (SELECT book_id
+        FROM t_collection
+        WHERE user_id = #{userId})
+        AND user_id = #{userId}
+        ORDER BY rating DESC
+        LIMIT 12
+    </select>
+</mapper>

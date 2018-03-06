@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="lazyLoadingEnabled" value="false" />
+    </settings>
+    <typeAliases>
+        <typeAlias alias="User" type="com.sf.domain.User" />
+        <typeAlias alias="Tag" type="com.sf.domain.Tag" />
+        <typeAlias alias="Book" type="com.sf.domain.Book" />
+        <typeAlias alias="Recommend" type="com.sf.domain.Recommend" />
+    </typeAliases>
+</configuration>

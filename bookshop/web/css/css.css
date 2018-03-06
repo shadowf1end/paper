@@ -1,0 +1,205 @@
+.subject #info {
+    font-size: 0.88em;
+    border-right: solid 1px lightgrey;
+    height: 11.5em;
+}
+
+.subject #score {
+    font-size: 0.88em;
+    color: grey;
+}
+#summary {
+    color: #666;
+    font-size: 0.9em !important;
+}
+#startop {
+    height: 10px;
+    width: 0;
+    float: left;
+    margin: 1px 4px;
+    background: #ffd596 none repeat scroll 0 0;
+}
+
+.tag_table td {
+    width: 15%;
+    font-size: 1.1em;
+}
+
+.concern_row,
+.top50_row {
+    margin: 0.1em;
+    border-bottom: dashed 0.1em lightgrey;
+}
+
+.top50_img {
+    width: 0.5em;
+    display: inline-block;
+}
+
+.concern_row #rank {
+    text-align: center;
+    width: 1.5em;
+}
+
+.comment_title {
+    background-color: rgba(246,246,241,0.8);
+}
+
+.concern_row #rank span {
+    background: url("../images/chart_top.gif");
+}
+
+.amount {
+    color: #aaa;
+    font-weight: normal;
+}
+
+.footer {
+    border-top: 0.1em lightgrey dashed;
+    height: 4em;
+}
+
+.rank th {
+    border-top: 0 !important;
+    text-align: center;
+    font-weight: normal;
+    border-bottom: 0.1em lightgrey dashed;
+}
+
+.top50 #name,
+.concern_latest #name,
+.footer #icp {
+    text-align: center;
+    font-size: 0.88em;
+}
+
+.tag_title,
+.concern_title,
+.concern_row #name,
+.top50_row #name {
+    font-size: 1.2em;
+}
+
+.latest_left_img {
+    width: 28%;
+    margin: 0 1em 1em 0;
+}
+
+.latest_right_img {
+    float:right;
+    width: 28%;
+    margin: 0 0 1em 1em;
+}
+
+.last {
+    width: auto;
+    word-break: keep-all;
+    white-space: nowrap;
+    background-color: #f5f5f5;
+    color: #37A;
+    font-size: 13px;
+    padding: 2px 11px 0;
+    display: inline-block;
+    margin: 0 3px 5px 0;
+    line-height: 20px;
+}
+
+.first {
+    margin: 0 0 1em 0;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+h4 {
+    display: inline-block;
+    font-weight: bold;
+}
+
+hr {
+    height: 0.08em;
+    background-color: lightgrey;
+}
+
+h6 {
+    color: sandybrown;
+}
+
+#head {
+    width: 4em;
+    height: 4em;
+}
+
+.concern #author,
+.concern #tag,
+.tag {
+    font-size: 0.88em;
+}
+
+.latest #author,
+.concern #describtion,
+.comment #detail,
+.tag_more,
+.rank #author,
+.footer #icp,
+.detail,
+.concern_row #detail,
+.top50_row #detail {
+    font-size: 0.88em;
+    color: grey;
+}
+
+.comment_row #detail {
+    color: grey;
+}
+
+#star {
+    display: inline-block;
+    background: url("../images/score.png");
+    background-position: 0 -110px;
+    width: 55px;
+    height: 11px;
+    margin: 0 3px 0 0;
+    overflow: hidden;
+}
+
+#ratings {
+    display: inline-block;
+    background: url("../images/ic_rating_m.png");
+    background-position: 0 -15px;
+    width: 75px;
+    height: 14px;
+    margin: 0 3px 0 0;
+    overflow: hidden;
+}
+
+#stars a img {
+    width: 16px;
+    height: 16px;
+}
+
+#change {
+    background: url("../images/arrow-trend.gif") no-repeat;
+    background-position: 0 3px;
+    padding: 0.2em 0.8em;
+}
+
+.navbar-text img {
+    width: 30%;
+}
+
+img {
+    width: 100%;
+}
+
+.dropdown-menu {
+    text-align: center;
+}

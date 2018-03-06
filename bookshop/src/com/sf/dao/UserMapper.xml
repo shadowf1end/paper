@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.sf.dao.UserDao">
+  <select id="findUserByUserName" resultType="User" parameterType="string">
+    SELECT 
+	    user_id userId,
+	    user_name userName,
+	    user_password userPassword
+    FROM t_user
+    WHERE user_name = #{userName}
+  </select>
+
+    <select id="findUserByUserId" resultType="User" parameterType="int">
+        SELECT
+        user_id userId,
+        user_name userName,
+        user_password userPassword
+        FROM t_user
+        WHERE user_id = #{userId}
+    </select>
+
+  <insert id="saveUser" parameterType="User">
+    INSERT INTO t_user (user_name, user_password)
+    VALUES (#{userName}, #{userPassword})
+  </insert>
+</mapper>

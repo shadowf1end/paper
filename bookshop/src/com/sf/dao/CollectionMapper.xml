@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sf.dao.CollectionDao">
+    <insert id="saveCollection" parameterType="com.sf.domain.Collection">
+        INSERT INTO t_collection(user_id, book_id, collection_type, rating, comment)
+        VALUES (#{userId}, #{bookId}, #{collectionType}, #{rating}, #{comment})
+    </insert>
+
+    <select id="findCollectionByBookIdAndUserId" resultType="com.sf.domain.Collection">
+        SELECT
+        collection_id collectionId,
+        user_id userId,
+        book_id bookId,
+        collection_type collectionType,
+        rating,
+        comment,
+        approval,
+        time
+        FROM t_collection
+        WHERE book_id = #{arg0} AND user_id = #{arg1}
+    </select>
+
+    <select id="findCollectionsByBookId" resultType="com.sf.domain.Collection">
+        SELECT
+        collection_id collectionId,
+        user_id userId,
+        book_id bookId,
+        collection_type collectionType,
+        rating,
+        comment,
+        approval,
+        time
+        FROM t_collection
+        WHERE book_id = #{arg0}
+        AND rating != 0
+        ORDER BY approval DESC
+        LIMIT 10 OFFSET #{arg1}
+    </select>
+
+    <select id="getCollectionNum" parameterType="int" resultType="int">
+        SELECT
+        count(collection_id)
+        FROM t_collection
+        WHERE book_id = #{bookId}
+        AND rating != 0
+    </select>
+
+    <select id="getAverage" parameterType="int" resultType="float">
+        SELECT
+        if(count(*),average,0)
+        from
+        (SELECT
+        book_id,
+        avg(rating)*2 average
+        FROM t_collection
+        WHERE rating != 0
+        GROUP BY book_id) AS t_avg
+        WHERE book_id = #{bookId}
+
+    </select>
+
+    <select id="getRatingNum"  resultType="int">
+        SELECT
+        count(collection_id)
+        FROM t_collection
+        WHERE book_id = #{arg0}
+        AND rating = #{arg1}
+    </select>
+
+    <select id="findCollectionsByUserId" resultType="com.sf.domain.Collection">
+        SELECT
+        collection_id collectionId,
+        user_id userId,
+        book_id bookId,
+        collection_type collectionType,
+        rating,
+        comment,
+        approval,
+        time
+        FROM t_collection
+        WHERE user_id = #{arg0}
+        AND collection_type = #{arg1}
+    </select>
+</mapper>
